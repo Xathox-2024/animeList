@@ -16,7 +16,7 @@ body{
 
 /* ---------- Wrapper & cartes ---------- */
 .al-wrapper{
-  max-width:1600px;          /* élargi */
+  max-width:1600px;
   margin:28px auto;
   padding:0 24px;
 }
@@ -70,19 +70,14 @@ body{
 .al-count{color:var(--muted)}
 
 /* ---------- Grille des cartes ---------- */
-/* 3 colonnes max sur desktop, 2 sur tablette, 1 sur mobile */
 .al-grid{
   display:grid;
   grid-template-columns:repeat(3, 1fr);
   gap:20px;
   list-style:none;margin:0;padding:0;
 }
-@media (max-width:1100px){
-  .al-grid{ grid-template-columns:repeat(2, 1fr); }
-}
-@media (max-width:640px){
-  .al-grid{ grid-template-columns:1fr; }
-}
+@media (max-width:1100px){ .al-grid{ grid-template-columns:repeat(2, 1fr); } }
+@media (max-width:640px){  .al-grid{ grid-template-columns:1fr; } }
 
 /* ---------- Carte ---------- */
 .al-item{
@@ -100,115 +95,62 @@ body{
   border-color:#2b3046;
 }
 
-/* ======= Layout interne de la carte ======= */
-/* Colonne image PLUS LARGE, texte bien décalé à droite */
-/* ======= Layout interne de la carte (mise à jour) ======= */
+/* ---------- Layout interne de la carte ---------- */
+/* image à gauche (grande) + texte à droite, sans recouvrement */
 .al-article{
   display:grid;
-  grid-template-columns: 220px 1fr;  /* 👈 colonne image plus large pour pousser le texte */
-  gap:28px;                          /* 👈 espace entre image & texte pour éviter tout chevauchement */
-  padding:14px;
-  min-height:220px;
+  grid-template-columns: 360px 1fr;   /* largeur colonne image */
+  gap:24px;
+  padding:16px;
   align-items:start;
 }
-@media (max-width: 780px){
-  .al-article{
-    grid-template-columns: 180px 1fr; /* un peu plus compact sur tablette */
-    gap:20px;
-  }
-}
-@media (max-width: 520px){
-  .al-article{
-    grid-template-columns: 120px 1fr; /* mobile : layout plus “sage” */
-    gap:14px;
-    min-height:160px;
-  }
-}
+@media (max-width:1100px){ .al-article{ grid-template-columns: 320px 1fr; } }
+@media (max-width:780px){  .al-article{ grid-template-columns: 260px 1fr; gap:18px; } }
+@media (max-width:520px){  .al-article{ grid-template-columns: 1fr; } } /* mobile: image au-dessus */
 
+/* ---------- Image : cadre propre, toujours rempli ---------- */
 .al-cover{
-  /* garde la boîte */
   display:block;
-  border-radius:12px;
-  box-sizing:border-box;
-
-  /* fond discret autour de l’image */
-  background:
-    radial-gradient(120% 120% at 50% 30%, rgba(255,255,255,.06) 0%, rgba(12,14,24,0) 40%),
-    #0c0e18;
-
-  /* montre toute l’image (pas de coupe) */
-  object-fit:contain;
-  object-position:center;
-
-  /* dimensions “bleed” (comme ta capture) */
-  width:154%;
-  height:113%;
-  max-height:245px;
-  aspect-ratio:16 / 9;
-
-  /* débordement contrôlé vers la droite/haut */
-  position:relative;
-  left:-12%;       /* décale un peu vers la gauche pour recentrer la compo */
-  top:-6%;         /* remonte légèrement */
-
-  /* petit passe-partout */
-  padding:4px;
+  width:100%;
+  aspect-ratio:16/9;           /* cadre constant */
+  height:auto;                 /* calculé via aspect-ratio */
+  object-fit:cover;            /* remplit le cadre (recadre si besoin) */
+  object-position:center;      /* centrage du recadrage */
+  border-radius:14px;
+  background:#0c0e18;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.03);
+  transition:transform .2s ease;
 }
+.al-item:hover .al-cover{ transform:scale(1.01); } /* léger “pop” */
 
-@media (max-width: 780px){
-  .al-cover{
-    width:140%;
-    height:108%;
-    left:-10%;
-    top:-4%;
-    max-height:230px;
-  }
-}
-
-@media (max-width: 520px){
-  .al-cover{
-    width:100%;
-    height:100%;
-    left:0;
-    top:0;
-    max-height:180px;
-    aspect-ratio:auto;
-  }
-}
-
-
-.al-status{ margin:0; font-weight:600; color:#ffd54a; }
-
-/* Infos (colonne texte à droite) */
-.al-info{
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-  align-self:stretch;
-}
-.al-name{margin:0;font-size:1.18rem;line-height:1.25;font-weight:800}
+/* ---------- Infos ---------- */
+.al-info{display:flex;flex-direction:column;gap:8px}
+.al-name{margin:0;font-size:1.22rem;line-height:1.25;font-weight:800}
 .al-meta{margin:0;color:var(--muted);font-weight:600}
+.al-status{margin:0;font-weight:700;color:var(--accent)}
 
-/* Genres */
+/* ---------- Genres ---------- */
 .al-genres{
   margin:0; display:flex; flex-wrap:wrap; gap:8px; color:#cfe2ff;
 }
 
 /* ---------- Description (clamp + fondu + expand) ---------- */
 .al-desc{
-  margin:0; color:#d9dce6; line-height:1.45;
+  margin:0; color:#d9dce6; line-height:1.5;
   display:-webkit-box; -webkit-box-orient:vertical; overflow:hidden;
-  line-clamp:7; -webkit-line-clamp:7;
+  -webkit-line-clamp:7; line-clamp:7;   /* ~7 lignes visibles */
   position:relative;
 }
-@media (max-width:520px){
-  .al-desc{ line-clamp:4; -webkit-line-clamp:4; }
-}
+@media (max-width:780px){ .al-desc{ -webkit-line-clamp:6; line-clamp:6; } }
+@media (max-width:520px){ .al-desc{ -webkit-line-clamp:5; line-clamp:5; } }
+
 .al-desc.clamped::after{
-  content:""; position:absolute; left:0; right:0; bottom:0; height:48px;
+  content:"";
+  position:absolute; left:0; right:0; bottom:0; height:48px;
   background:linear-gradient(to bottom, rgba(16,18,34,0), rgba(16,18,34,1));
 }
-.al-item.expanded .al-desc{ line-clamp:unset; -webkit-line-clamp:unset; display:block; overflow:visible; }
+
+.al-item.expanded .al-desc{ -webkit-line-clamp:unset; line-clamp:unset; overflow:visible; }
 .al-item.expanded .al-desc.clamped::after{ display:none; }
 
 .al-more{
