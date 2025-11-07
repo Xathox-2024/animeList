@@ -1,0 +1,13 @@
+<% if (!cookieConsent) { %>
+<div id="cookie-banner" class="cookie-banner">
+  <div class="cookie-banner__text">
+    Nous utilisons des cookies pour améliorer votre expérience.
+    <a href="/static/politiqueCookies" class="cookie-banner__link">En savoir plus</a>
+  </div>
+  <div class="cookie-banner__actions">
+    <button id="cookie-reject" class="cookie-btn cookie-btn--ghost" type="button">Refuser</button>
+    <button id="cookie-accept" class="cookie-btn cookie-btn--primary" type="button">Accepter</button>
+  </div>
+</div>
+<script src="/js/cookies/consent.js" defer></script>
+<% } %>

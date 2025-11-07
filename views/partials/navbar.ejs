@@ -1,0 +1,56 @@
+<nav class="navbar">
+  <div class="navbar-container">
+    
+    <div class="navbar-left">
+      <a href="/" class="navbar-brand">AnimeList</a>
+    </div>
+
+    <div class="navbar-center">
+      <ul class="navbar-links">
+        <li><a href="/">Accueil</a></li>
+
+        <% if (!session || !session.userId) { %>
+          <!-- Si non connecté -->
+          <li><a href="/login">Connexion</a></li>
+          <li><a href="/register">Inscription</a></li>
+        <% } else { %>
+          <!-- Si connecté pour le moment rien mdr-->
+        <% } %>
+
+        <li><a href="#" id="manage-cookies">Gérer mes cookies</a></li>
+      </ul>
+    </div>
+
+    <!-- Avatar + menu -->
+    <% if (session && session.userId) { %>
+      <div class="navbar-right">
+        <div class="avatar-menu">
+          <button class="avatar-btn" id="avatarBtn" aria-haspopup="true" aria-expanded="false">
+            <img
+              src="<%= session.avatar %>"
+              alt="Avatar de <%= session.firstName %>"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="chevron" aria-hidden="true">▾</span>
+          </button>
+
+          <div class="menu" id="avatarMenu" role="menu">
+            <a href="/change-password" role="menuitem">Changer mon mot de passe</a>
+
+            <form method="POST" action="/me/delete"
+                  onsubmit="return confirm('Supprimer votre compte ? Cette action est définitive.');">
+              <button type="submit" role="menuitem" class="danger">Supprimer mon compte</button>
+            </form>
+
+            <a href="/logout" role="menuitem">Déconnexion</a>
+          </div>
+        </div>
+      </div>
+    <% } %>
+    
+  </div>
+</nav>
+
+
+

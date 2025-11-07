@@ -1,0 +1,18 @@
+.cookie-banner {
+  position: fixed; left: 0; right: 0; bottom: 0;
+  display: flex; gap: 12px; justify-content: space-between; align-items: center;
+  padding: 14px 16px; background: #111; color: #f5f5f5; z-index: 9999;
+  box-shadow: 0 -6px 20px rgba(0,0,0,.25);
+  font: 14px/1.4 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+.cookie-banner__text { max-width: 72ch }
+.cookie-banner__link { color: #ffd84d; text-decoration: underline }
+.cookie-banner__actions { display: flex; gap: 8px; flex-shrink: 0 }
+.cookie-btn { border: 0; padding: 10px 14px; border-radius: 999px; cursor: pointer; }
+.cookie-btn--primary { background: #ffd84d; color: #111; font-weight: 700 }
+.cookie-btn--ghost { background: transparent; color: #f5f5f5; outline: 1px solid #444 }
+@media (max-width: 640px) {
+  .cookie-banner { flex-direction: column; align-items: stretch }
+  .cookie-banner__actions { justify-content: stretch }
+  .cookie-btn { width: 100% }
+}

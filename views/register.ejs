@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="AnimeList, votre partenaire pour la création de sites web modernes, performants et la réparation informatique.">
+    <meta name="keywords" content="site web, création de site, développeur web, réparation PC, informatique, AnimeList, web design">
+    <meta name="author" content="AnimeList">
+    <meta name="robots" content="index, follow">
+    <title>AnimeList - Inscription</title>
+    <link rel="icon" href="/ico/AnimeList.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/register.css" />
+  </head>
+  <body>
+    <div class="register-container">
+      <h2 class="register-title">AnimeList - Système d'Inscription</h2>
+
+      <form
+        class="register-form"
+        action="/register"
+        method="POST"
+        enctype="multipart/form-data">
+        <div class="input-box">
+          <label for="firstName">Nom</label>
+          <input
+            type="text"
+            name="firstName"
+            id="firstName"
+            required
+            placeholder="Nom"
+          />
+        </div>
+
+        <div class="input-box">
+          <label for="name">Prénom</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            required
+            placeholder="Prénom"/>
+        </div>
+
+        <div class="input-box file-box">
+          <label for="avatar">Avatar (image uniquement)</label>
+          <input type="file" name="avatar" required id="avatar" accept="image/*" />
+        </div>
+
+        <div class="input-box">
+          <label for="email">mail</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            required
+            placeholder="Email"
+            pattern="^[a-zA-Z0-9._%+\-]{3,}@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$"
+            title="Exemple: user@gmail.com"
+          />
+        </div>
+
+        <div class="input-box">
+          <label for="password">mot de passe</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            required
+            placeholder="Mot de passe"
+            pattern="^(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$"
+            title="Le mot de passe doit contenir au moins 8 caractères, au moins 1 majuscule et 1 caractère spécial (!@#$%^&*)."
+          />
+        </div>
+
+        <div class="input-box">
+          <label for="confirmPassword">confimer le mot de passe</label>
+          <input
+            type="password"
+            name="confirmPassword"
+            id="confirmPassword"
+            required
+            placeholder="Confirmer le mot de passe"
+            pattern="^(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$"
+            title="Le mot de passe doit contenir au moins 8 caractères, au moins 1 majuscule et 1 caractère spécial (!@#$%^&*)."
+          />
+        </div>
+
+        <button type="submit" class="register-btn">S'inscrire</button>
+      </form>
+
+      <p class="login-text">Déjà inscrit ? <a href="/login">Se connecter</a></p>
+      <p class="login-text">pas envie d'un compte ? <a href="/">home</a></p>
+    </div>
+    
+    <script src="/js/confirmPassword.js"></script>
+    
+  </body>
+</html>
