@@ -4,19 +4,15 @@ const router = express.Router();
 const { getAnimeList, listAnimesJson, createAnime } =
   require("../controllers/animes/animesControllers");
 
-// middlewarzes existants chez toi
+const isAuthenticated = require("./Middlewares/authRoutes/isAuthenticated");
 const multerCloudinary = require("./Middlewares/authRoutes/multerCloudinary");
 const validateAnime = require("./Middlewares/validateAnime");
 
-// page
 router.get("/anime", getAnimeList);
-
-// API JSON (liste triée)
 router.get("/api/anime", listAnimesJson);
-
-router.post(
-  "/anime",
-  multerCloudinary.single("image"),     
+router.post("/anime",
+  isAuthenticated,
+  multerCloudinary.single("image"),
   validateAnime,
   createAnime
 );
