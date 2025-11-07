@@ -1,18 +1,18 @@
-const showLogin = require("./users/show/showLogin");
-const showRegister = require("./users/show/showRegister");
-const showResetPassword = require("./users/show/showResetPassword");
+const showLogin = require("./show/showLogin");
+const showRegister = require("./show/showRegister");
+const showResetPassword = require(".//show/showResetPassword");
 const login = require("./users/login");
 const register = require("./users/register");
 const resetPasswordEmail = require("./users/resetPasswordEmail");
-const showResetForm = require("./users/show/showResetForm");
+const showResetForm = require("./show/showResetForm");
 const resetPassword = require("./users/resetPassword");
 const logout = require("./users/logout");
-const showChangePassword = require("./users/show/showChangePassword");
+const showChangePassword = require("./show/showChangePassword");
 const changePassword = require("./users/changePassword");
 const validateEmail = require("./users/validateEmail");
 const validatePassword = require("./users/validatePassword");
 const deleteMe = require("./users/deleteMe");
-const showHome = require("./users/show/showHome");
+const showHome = require("./show/showHome");
 
 module.exports = {
   showHome,
