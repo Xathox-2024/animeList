@@ -6,7 +6,6 @@ const cookieParser = require("cookie-parser");
 const cookieConsent = require("./routes/Middlewares/cookieConsent");
 const consentRoutes = require("./routes/consentRoutes");
 
-const maintenance = require("./routes/Middlewares/modeMaintenance");
 const connectDB = require("./config/database");
 const protectRoutes = require("./routes/Middlewares/protectRoutes");
 const createSessionMiddleware = require("./config/session");
