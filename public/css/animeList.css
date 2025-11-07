@@ -61,23 +61,24 @@ body{
 }
 .al-item:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(0,0,0,.45);border-color:#2b3046}
 
-/* ---------- Layout interne (image 1) ---------- */
-/* Image bien large à gauche, texte à droite */
+/* ---------- Layout interne ---------- */
+/* Image à gauche + texte à droite. L’image a une largeur adaptive
+   (jamais trop grande), et la colonne texte peut vraiment wrap (min-width:0). */
 .al-article{
   display:grid;
-  grid-template-columns: 420px 1fr; /* ← taille “image 1” */
-  gap:24px; padding:16px; align-items:start;
+  grid-template-columns: clamp(260px, 32%, 340px) 1fr; /* ← plus petit que 420px */
+  gap:22px; padding:16px; align-items:start;
 }
-@media (max-width:1100px){.al-article{grid-template-columns:360px 1fr}}
-@media (max-width:780px){ .al-article{grid-template-columns:280px 1fr;gap:18px}}
-@media (max-width:520px){ .al-article{grid-template-columns:1fr} } /* mobile: image au-dessus */
+@media (max-width:1100px){.al-article{grid-template-columns: clamp(240px, 36%, 320px) 1fr}}
+@media (max-width:780px){  .al-article{grid-template-columns: 240px 1fr; gap:18px} }
+@media (max-width:520px){  .al-article{grid-template-columns:1fr} } /* mobile: image au-dessus */
 
-/* ---------- Image : propre, remplie, sans déformation visuelle ---------- */
+/* ---------- Image : propre, remplie, sans déformation ---------- */
 .al-cover{
   width:100%;
-  aspect-ratio:16/9;         /* cadre constant */
+  aspect-ratio:16/9;
   height:auto;
-  object-fit:cover;          /* remplit le cadre (recadre proprement) */
+  object-fit:cover;          /* remplit le cadre proprement */
   object-position:center;
   border-radius:14px;
   background:#0c0e18;
@@ -86,9 +87,12 @@ body{
 }
 .al-item:hover .al-cover{transform:scale(1.01)}
 
-/* ---------- Infos (comme avant) ---------- */
-.al-info{display:flex;flex-direction:column;gap:8px}
-.al-name{margin:0;font-size:1.28rem;line-height:1.25;font-weight:800}
+/* ---------- Infos ---------- */
+.al-info{
+  display:flex;flex-direction:column;gap:8px;
+  min-width:0;                 /* 👈 indispensable pour que le texte wrap en CSS Grid */
+}
+.al-name{margin:0;font-size:1.22rem;line-height:1.25;font-weight:800;word-break:break-word}
 .al-meta{margin:0;color:var(--muted);font-weight:600}
 .al-status{margin:0;font-weight:700;color:var(--accent)}
 
