@@ -15,7 +15,11 @@ body{
 }
 
 /* ---------- Wrapper & cartes ---------- */
-.al-wrapper{max-width:1100px;margin:28px auto;padding:0 16px}
+.al-wrapper{
+  max-width:1600px;          /* élargi */
+  margin:28px auto;
+  padding:0 24px;            /* un peu plus de marge interne */
+}
 .al-header h1{margin:0 0 6px;font-size:2.1rem}
 .al-sub{margin:0 0 22px;color:var(--muted)}
 
@@ -66,12 +70,18 @@ body{
 .al-count{color:var(--muted)}
 
 /* ---------- Grille des cartes ---------- */
+/* 3 colonnes max sur desktop, 2 sur tablette, 1 sur mobile */
 .al-grid{
-  --min: 290px; /* largeur mini d’une carte */
   display:grid;
-  grid-template-columns:repeat(auto-fill, minmax(var(--min),1fr));
-  gap:16px;
+  grid-template-columns:repeat(3, 1fr);
+  gap:20px;
   list-style:none;margin:0;padding:0;
+}
+@media (max-width:1100px){
+  .al-grid{ grid-template-columns:repeat(2, 1fr); }
+}
+@media (max-width:640px){
+  .al-grid{ grid-template-columns:1fr; }
 }
 
 /* ---------- Carte ---------- */
@@ -92,19 +102,20 @@ body{
 
 .al-article{
   display:grid;
-  grid-template-columns:140px 1fr;
-  gap:14px;
-  padding:12px;
-  min-height:184px;
+  grid-template-columns:170px 1fr; /* + large pour mieux aérer le texte */
+  gap:16px;
+  padding:14px;
+  min-height:200px;
 }
 @media (max-width:520px){
-  .al-article{grid-template-columns:110px 1fr;min-height:150px}
+  .al-article{ grid-template-columns:120px 1fr; min-height:160px; }
 }
 
 /* Image */
 .al-cover{
   width:100%; height:100%;
-  max-height:180px; aspect-ratio: 7/9;
+  max-height:220px;           /* un peu plus haut */
+  aspect-ratio:7/9;
   object-fit:cover; background:#0c0e18; border-radius:10px;
 }
 
@@ -123,31 +134,37 @@ body{
 /* ---------- Description (clamp + fondu + expand) ---------- */
 .al-desc{
   margin:0; color:#d9dce6; line-height:1.45;
-  display: -webkit-box;           /* nécessaire pour Safari/Chromium */
-  -webkit-box-orient: vertical;   /* idem */
-  overflow: hidden;
+  display:-webkit-box;           /* nécessaire pour Safari/Chromium */
+  -webkit-box-orient:vertical;   /* idem */
+  overflow:hidden;
 
-  /* d'abord la standard (expérimentale), ensuite la webkit */
-  line-clamp: 6;                  /* standard / future */
-  -webkit-line-clamp: 6;          /* support actuel */
-  position: relative;
+  /* standard (future) puis support actuel */
+  line-clamp:7;
+  -webkit-line-clamp:7;
+  position:relative;
 }
-
 @media (max-width:520px){
   .al-desc{
-    line-clamp: 4;
-    -webkit-line-clamp: 4;
+    line-clamp:4;
+    -webkit-line-clamp:4;
   }
 }
 
-/* état développé */
-.al-item.expanded .al-desc{
-  line-clamp: unset;
-  -webkit-line-clamp: unset;
-  display: block;
-  overflow: visible;
+/* petit fondu esthétique quand clampé */
+.al-desc.clamped::after{
+  content:"";
+  position:absolute; left:0; right:0; bottom:0;
+  height:48px;
+  background:linear-gradient(to bottom, rgba(16,18,34,0), rgba(16,18,34,1));
 }
 
+/* état développé (voir plus) */
+.al-item.expanded .al-desc{
+  line-clamp:unset;
+  -webkit-line-clamp:unset;
+  display:block;
+  overflow:visible;
+}
 .al-item.expanded .al-desc.clamped::after{display:none}
 
 /* bouton Voir plus / Voir moins */
