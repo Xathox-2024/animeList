@@ -29,6 +29,18 @@ body {
   box-shadow: 0 6px 24px rgba(0,0,0,.25);
 }
 
+/* delete button */
+.al-item { position: relative; }
+.al-del{
+  position:absolute; top:8px; right:8px;
+  width:28px; height:28px; line-height:26px;
+  border-radius:999px; border:1px solid var(--border);
+  background:#1a1b2a; color:#eee; font-weight:700;
+  cursor:pointer;
+}
+.al-del:hover{ background:#2a2c3f; }
+
+
 .al-form label { display:block; font-weight:600; margin:10px 0 6px; }
 .al-form input[type="text"],
 .al-form input[type="number"],
