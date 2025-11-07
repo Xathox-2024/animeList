@@ -23,7 +23,6 @@ router.post(
 
 // 🔥 suppression
 router.delete("/anime/:id",
-  isAuthenticated,
   deleteAnime
 );
 
