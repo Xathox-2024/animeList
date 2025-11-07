@@ -24,8 +24,6 @@ app.set("views", path.join(path.resolve(), "views"));
 
 app.use(express.static('public'));
 
-app.use(maintenance);
-
 app.use(express.json());
 
 // x-www-form-urlencoded
