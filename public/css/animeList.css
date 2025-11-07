@@ -119,6 +119,12 @@ body{
   object-fit:cover; background:#0c0e18; border-radius:10px;
 }
 
+.al-status {
+  margin:0;
+  font-weight:600;
+  color:#ffd54a;
+}
+
 /* Infos */
 .al-info{display:flex;flex-direction:column;gap:8px}
 .al-name{margin:0;font-size:1.15rem;line-height:1.25;font-weight:800}

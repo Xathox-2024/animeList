@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 const animeSchema = new mongoose.Schema(
   {
     name: { type: String, required: true, trim: true, unique: true },
-    year: { type: Number },                     // année seule
+    year: { type: Number },                
+    status: { type: String, enum: ["En cours", "Fini"], default: "En cours" },
     genres: [{ type: String, trim: true }],
     imageUrl: { type: String, required: true },
     imagePublicId: { type: String, required: true },

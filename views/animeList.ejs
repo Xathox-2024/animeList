@@ -36,11 +36,16 @@
           <label>Année
             <input type="number" name="year" placeholder="2025" min="1900" max="2100" />
           </label>
-
         </div>
 
         <div class="grid-2">
-        
+          <label>Statut
+            <select name="status" required>
+              <option value="En cours">En cours</option>
+              <option value="Fini">Fini</option>
+            </select>
+          </label>
+
           <label>Genres (séparés par des virgules)
             <input type="text" name="genres" placeholder="Action, Aventure, ..." />
           </label>
@@ -76,6 +81,7 @@
               <h3 class="al-name"></h3>
               <p class="al-meta"></p>
               <p class="al-genres"></p>
+              <p class="al-status"></p> 
               <p class="al-desc"></p>
             </div>
           </article>
@@ -85,9 +91,7 @@
   </main>
 
   <%- include('partials/footer') %>
-
   <%- include('partials/cookieBanner') %>
-  
 
   <script src="/js/animeList.js" defer></script>
   <script src="/js/animeSearch.js" defer></script>

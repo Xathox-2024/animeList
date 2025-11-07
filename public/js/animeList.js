@@ -47,6 +47,7 @@
       const name  = frag.querySelector(".al-name");
       const meta  = frag.querySelector(".al-meta");
       const genres= frag.querySelector(".al-genres");
+      const statusEl = frag.querySelector(".al-status");
       const desc  = frag.querySelector(".al-desc");
       const info  = frag.querySelector(".al-info");
 
@@ -56,9 +57,12 @@
       name.textContent = a.name;
       meta.textContent = a.year ? String(a.year) : "";
       genres.textContent = (a.genres || []).join(", ");
-      desc.textContent = a.description || "";
 
-      // bouton "voir plus" si description longue
+      // statut
+      statusEl.textContent = a.status ? `Statut : ${a.status}` : "";
+
+      // description + voir plus
+      desc.textContent = a.description || "";
       const needsMore = (a.description || "").length > 220;
       if (needsMore) {
         desc.classList.add("clamped");
@@ -94,7 +98,7 @@
     e.preventDefault();
     formMsg.textContent = "Envoi...";
     try {
-      const created = await create(new FormData(form));
+      const created = await create(new FormData(form)); 
       allAnimes.push(created);
       form.reset();
       formMsg.textContent = "Ajouté ✅";
