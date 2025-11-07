@@ -123,26 +123,31 @@ body{
 /* ---------- Description (clamp + fondu + expand) ---------- */
 .al-desc{
   margin:0; color:#d9dce6; line-height:1.45;
-  display:-webkit-box; -webkit-box-orient:vertical; overflow:hidden;
-  -webkit-line-clamp:6; /* nb de lignes visibles quand clampé */
-  position:relative;
-}
-@media (max-width:520px){ .al-desc{-webkit-line-clamp:4} }
+  display: -webkit-box;           /* nécessaire pour Safari/Chromium */
+  -webkit-box-orient: vertical;   /* idem */
+  overflow: hidden;
 
-/* petit fondu esthétique quand clampé */
-.al-desc.clamped::after{
-  content:"";
-  position:absolute; left:0; right:0; bottom:0;
-  height:48px;
-  background:linear-gradient(to bottom, rgba(16,18,34,0), rgba(16,18,34,1));
+  /* d'abord la standard (expérimentale), ensuite la webkit */
+  line-clamp: 6;                  /* standard / future */
+  -webkit-line-clamp: 6;          /* support actuel */
+  position: relative;
 }
 
-/* état développé (voir plus) */
+@media (max-width:520px){
+  .al-desc{
+    line-clamp: 4;
+    -webkit-line-clamp: 4;
+  }
+}
+
+/* état développé */
 .al-item.expanded .al-desc{
-  -webkit-line-clamp:unset;
-  display:block;
-  overflow:visible;
+  line-clamp: unset;
+  -webkit-line-clamp: unset;
+  display: block;
+  overflow: visible;
 }
+
 .al-item.expanded .al-desc.clamped::after{display:none}
 
 /* bouton Voir plus / Voir moins */
