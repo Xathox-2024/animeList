@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title><%= title %> • AnimeList</title>
-  <link rel="stylesheet" href="/public/css/navbar.css">
-  <link rel="stylesheet" href="/public/css/animeList.css">
+  <link rel="stylesheet" href="/css/navbar.css">
+  <link rel="stylesheet" href="/css/animeList.css">
 </head>
 <body>
 
-  <%- include("partials/navbar", { session }) %>
+  <%- include('partials/navbar') %>
 
   <main class="al-wrapper">
     <header class="al-header">
@@ -77,6 +77,11 @@
       </template>
     </section>
   </main>
+
+  <%- include('partials/footer') %>
+
+  <%- include('partials/cookieBanner') %>
+  
 
   <script src="/js/animeList.js" defer></script>
   <script src="/js/animeSearch.js" defer></script>
