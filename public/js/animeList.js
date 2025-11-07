@@ -48,6 +48,7 @@
       const meta  = frag.querySelector(".al-meta");
       const genres= frag.querySelector(".al-genres");
       const desc  = frag.querySelector(".al-desc");
+      const info  = frag.querySelector(".al-info");
 
       item.dataset.id = a._id;
       cover.src = a.imageUrl;
@@ -57,10 +58,30 @@
       genres.textContent = (a.genres || []).join(", ");
       desc.textContent = a.description || "";
 
+      // bouton "voir plus" si description longue
+      const needsMore = (a.description || "").length > 220;
+      if (needsMore) {
+        desc.classList.add("clamped");
+        const more = document.createElement("button");
+        more.type = "button";
+        more.className = "al-more";
+        more.textContent = "voir plus";
+        info.appendChild(more);
+      }
+
       listEl.appendChild(frag);
     }
     countEl.textContent = list.length;
   }
+
+  // Voir plus / Voir moins (délégation)
+  listEl.addEventListener("click", (e) => {
+    const btn = e.target.closest(".al-more");
+    if (!btn) return;
+    const item = btn.closest(".al-item");
+    item.classList.toggle("expanded");
+    btn.textContent = item.classList.contains("expanded") ? "voir moins" : "voir plus";
+  });
 
   // Recherche (depuis la barre de la navbar)
   window.__onAnimeSearchChange = (text) => {

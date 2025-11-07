@@ -119,18 +119,41 @@ body{
   display:flex; flex-wrap:wrap; gap:8px;
   color:#cfe2ff;
 }
-.al-genres::before{content:"";}
 
-/* Description clampée (évite les pavés) */
+/* ---------- Description (clamp + fondu + expand) ---------- */
 .al-desc{
   margin:0; color:#d9dce6; line-height:1.45;
   display:-webkit-box; -webkit-box-orient:vertical; overflow:hidden;
-  -webkit-line-clamp:6; /* # de lignes visibles */
+  -webkit-line-clamp:6; /* nb de lignes visibles quand clampé */
+  position:relative;
 }
 @media (max-width:520px){ .al-desc{-webkit-line-clamp:4} }
 
+/* petit fondu esthétique quand clampé */
+.al-desc.clamped::after{
+  content:"";
+  position:absolute; left:0; right:0; bottom:0;
+  height:48px;
+  background:linear-gradient(to bottom, rgba(16,18,34,0), rgba(16,18,34,1));
+}
+
+/* état développé (voir plus) */
+.al-item.expanded .al-desc{
+  -webkit-line-clamp:unset;
+  display:block;
+  overflow:visible;
+}
+.al-item.expanded .al-desc.clamped::after{display:none}
+
+/* bouton Voir plus / Voir moins */
+.al-more{
+  margin-top:6px;
+  background:none; border:0; padding:0;
+  color:#cfe2ff; font-weight:700; cursor:pointer;
+}
+.al-more:hover{text-decoration:underline}
+
 /* ---------- Bouton supprimer ---------- */
-.al-item{position:relative}
 .al-del{
   position:absolute; top:10px; right:10px;
   width:30px; height:30px; line-height:28px;
@@ -144,7 +167,7 @@ body{
 .al-del:hover{background:#24273a;border-color:#333b58}
 .al-del:active{transform:scale(.98)}
 
-/* ---------- Recherche de la navbar (cohérence) ---------- */
+/* ---------- Recherche de la navbar ---------- */
 .navbar-search{
   display:flex;align-items:center;gap:8px;
   background:#0f1120;border:1px solid var(--border);
