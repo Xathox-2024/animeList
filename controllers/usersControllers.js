@@ -1,5 +1,4 @@
 const showLogin = require("./users/show/showLogin");
-const showHome = require("./users/show/showHome");
 const showRegister = require("./users/show/showRegister");
 const showResetPassword = require("./users/show/showResetPassword");
 const login = require("./users/login");
