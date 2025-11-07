@@ -112,19 +112,20 @@ body{
 }
 
 /* Image */
-.al-cover {
+.al-cover{
   width: 100%;
   height: 100%;
-  max-height: 220px;
-  aspect-ratio: 7/9;
-  object-fit: cover;
+  max-height: 220px;        /* on garde la même hauteur d'affiche */
+  aspect-ratio: 7 / 9;      /* même cadre qu’avant */
+  object-fit: contain;      /* 🔥 affiche l’image en entier */
   object-position: center;
-  border-radius: 10px;
   display: block;
-  background-color: #0c0e18;
+  border-radius: 10px;
 
-  /* petit ajustement pour ne pas couper trop fort les bords */
-  clip-path: inset(2% 0 2% 0 round 10px);
+  /* fond doux au lieu de bandes noires */
+  background:
+    radial-gradient(120% 120% at 50% 30%, rgba(255,255,255,0.06) 0%, rgba(12,14,24,0) 40%) ,
+    #0c0e18;
 }
 
 
