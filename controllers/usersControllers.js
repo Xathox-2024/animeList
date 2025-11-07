@@ -7,6 +7,7 @@ const changePassword = require("./users/changePassword");
 const validateEmail = require("./users/validateEmail");
 const validatePassword = require("./users/validatePassword");
 const deleteMe = require("./users/deleteMe");
+const showHome = require("./users/showHome");
 
 module.exports = {
   login,
@@ -18,4 +19,5 @@ module.exports = {
   validateEmail,
   validatePassword,
   deleteMe,
+  showHome,
 };
