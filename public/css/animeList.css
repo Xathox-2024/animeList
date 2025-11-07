@@ -91,7 +91,14 @@ body{
   display:flex;flex-direction:column;gap:8px;
   min-width:0;
 }
-.al-name{margin:0;font-size:1.22rem;line-height:1.25;font-weight:800;word-break:break-word}
+.al-name{
+  margin:0;
+  font-size:1.22rem;
+  line-height:1.25;
+  font-weight:800;
+  word-break:break-word;
+  padding-right:45px;          /* espace réservé pour le bouton X */
+}
 .al-meta{margin:0;color:var(--muted);font-weight:600}
 .al-status{margin:0;font-weight:700;color:var(--accent)}
 
@@ -127,9 +134,20 @@ body{
 
 /* ---------- Bouton supprimer ---------- */
 .al-del{
-  position:absolute;top:10px;right:10px;width:30px;height:30px;line-height:28px;
-  border-radius:999px;border:1px solid var(--border);background:#1b1d2c;color:#f1f3f9;
-  font-weight:800;cursor:pointer;display:grid;place-items:center;transition:background .2s,transform .08s,border-color .2s;
+  position:absolute;
+  top:12px;
+  right:12px;                  /* 🔹 un peu plus d’espace */
+  width:30px; height:30px; line-height:28px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:#1b1d2c;
+  color:#f1f3f9;
+  font-weight:800;
+  cursor:pointer;
+  display:grid;
+  place-items:center;
+  transition:background .2s, transform .08s, border-color .2s;
+  z-index:2;
 }
 .al-del:hover{background:#24273a;border-color:#333b58}
 .al-del:active{transform:scale(.98)}
