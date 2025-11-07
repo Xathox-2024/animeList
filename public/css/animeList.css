@@ -113,7 +113,16 @@ body{
 }
 .al-item.expanded .al-desc{-webkit-line-clamp:unset;line-clamp:unset;overflow:visible}
 .al-item.expanded .al-desc.clamped::after{display:none}
-.al-more{margin-top:6px;background:none;border:0;padding:0;color:#cfe2ff;font-weight:700;cursor:pointer}
+.al-more{
+  margin-top:2px;           
+  background:none;
+  border:0;
+  padding:0;
+  color:#cfe2ff;
+  font-weight:700;
+  cursor:pointer;
+  align-self:flex-start;    
+}
 .al-more:hover{text-decoration:underline}
 
 /* ---------- Bouton supprimer ---------- */
