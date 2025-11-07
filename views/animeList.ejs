@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title><%= title %> • AnimeList</title>
+  <link rel="stylesheet" href="/css/navbar.css">
+  <link rel="stylesheet" href="/css/animeList.css">
+</head>
+<body>
+
+  <%- include("partials/navbar", { session }) %>
+
+  <main class="al-wrapper">
+    <header class="al-header">
+      <h1>Ma liste d'animes</h1>
+      <p class="al-sub">Ajoute, cherche et parcours par ordre alphabétique.</p>
+    </header>
+
+    <!-- Formulaire d'ajout -->
+    <section class="al-card al-form">
+      <h2>Ajouter un anime</h2>
+      <form id="animeForm" enctype="multipart/form-data" autocomplete="off">
+        <div class="grid-2">
+          <label>Nom
+            <input type="text" name="name" required />
+          </label>
+
+          <label>Date (ex: 12/03)
+            <input type="text" name="date" placeholder="JJ/MM" />
+          </label>
+        </div>
+
+        <div class="grid-2">
+          <label>Année
+            <input type="number" name="year" placeholder="YYYY" />
+          </label>
+
+          <label>Genres (séparés par des virgules)
+            <input type="text" name="genres" placeholder="Action, Aventure, ..." />
+          </label>
+        </div>
+
+        <label>Description
+          <textarea name="description" rows="4" placeholder="Résumé rapide..."></textarea>
+        </label>
+
+        <label>Image (obligatoire)
+          <input type="file" name="image" accept="image/*" required />
+        </label>
+
+        <button type="submit" class="al-btn">Ajouter</button>
+        <p id="formMsg" class="al-msg" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <!-- Liste / rendu -->
+    <section class="al-card">
+      <div class="al-toolbar">
+        <h2 class="m0">Animes</h2>
+        <div class="al-count"><span id="count">0</span> résultat(s)</div>
+      </div>
+
+      <ul id="animeList" class="al-grid"></ul>
+      <template id="animeItemTpl">
+        <li class="al-item">
+          <article class="al-article">
+            <img class="al-cover" alt="" loading="lazy" decoding="async" />
+            <div class="al-info">
+              <h3 class="al-name"></h3>
+              <p class="al-meta"></p>
+              <p class="al-genres"></p>
+              <p class="al-desc"></p>
+            </div>
+          </article>
+        </li>
+      </template>
+    </section>
+  </main>
+
+  <script src="/js/animeList.js" defer></script>
+  <script src="/js/animeSearch.js" defer></script>
+</body>
+</html>

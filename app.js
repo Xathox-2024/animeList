@@ -10,6 +10,7 @@ const connectDB = require("./config/database");
 const protectRoutes = require("./routes/Middlewares/protectRoutes");
 const createSessionMiddleware = require("./config/session");
 const authRoutes = require("./routes/authRoutes");
+const animeRoutes = require("./routes/animeRoutes");
 
 dotenv.config();
 
@@ -46,9 +47,9 @@ app.use(consentRoutes);
 
   app.use(protectRoutes);
 
-  app.use("/static", staticRoutes);
-
   app.use("/", authRoutes);
+
+  app.use(animeRoutes);
 
   const PORT = process.env.PORT || 8080;
 
