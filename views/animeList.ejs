@@ -68,7 +68,7 @@
       <ul id="animeList" class="al-grid"></ul>
       <template id="animeItemTpl">
         <li class="al-item">
-          <% if (user && user.role === 'admin') { %>
+          <% if (session.role === "admin") { %>
             <button class="al-del" title="Supprimer" aria-label="Supprimer">×</button>
           <% } %>
           <article class="al-article">
