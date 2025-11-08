@@ -68,14 +68,16 @@
       <ul id="animeList" class="al-grid"></ul>
       <template id="animeItemTpl">
         <li class="al-item">
-          <button class="al-del" title="Supprimer" aria-label="Supprimer">×</button>
+          <% if (user && user.role === 'admin') { %>
+            <button class="al-del" title="Supprimer" aria-label="Supprimer">×</button>
+          <% } %>
           <article class="al-article">
             <img class="al-cover" alt="" loading="lazy" decoding="async" />
             <div class="al-info">
               <h3 class="al-name"></h3>
               <p class="al-meta"></p>
               <p class="al-genres"></p>
-              <p class="al-status"></p> 
+              <p class="al-status"></p>
               <p class="al-desc"></p>
             </div>
           </article>
