@@ -175,6 +175,10 @@ nav {
   display: block;
 }
 
+.avatar-menu .menu.open {
+  display: block;
+}
+
 @media (max-width: 768px) {
   .navbar-center {
     display: none;
