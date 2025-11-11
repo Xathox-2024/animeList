@@ -162,3 +162,36 @@ body{
 .navbar-search{display:flex;align-items:center;gap:8px;background:#0f1120;border:1px solid var(--border);border-radius:999px;padding:6px 10px}
 .navbar-search input{background:transparent;border:0;outline:none;color:var(--text);width:200px}
 @media (max-width:900px){.navbar-search input{width:120px}}
+
+
+/* --- Bouton "En cours de visionnage" --- */
+.al-watch{
+  align-self:center;
+  margin:4px 0 2px;
+  padding:8px 12px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:#2a1212;      /* rouge éteint par défaut */
+  color:#ffdede;
+  font-weight:700;
+  cursor:pointer;
+  transition:transform .08s, filter .2s, background .2s, color .2s, border-color .2s;
+}
+.al-watch:hover{filter:brightness(1.05)}
+.al-watch:active{transform:translateY(1px)}
+
+/* état ON (en cours = vert) */
+.al-item.is-watching .al-watch{
+  background:#12321a;       /* vert */
+  color:#d6ffe0;
+  border-color:#235a34;
+}
+
+/* Quand un item est "en cours", on peut aussi le marquer visuellement */
+.al-item.is-watching{
+  border-color:#235a34;
+  box-shadow:0 12px 26px rgba(0, 50, 20, .35);
+}
+
+/* Option : espace entre bouton et le bloc texte */
+.al-info{ margin-top:4px; }
