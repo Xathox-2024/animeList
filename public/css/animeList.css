@@ -86,15 +86,13 @@ body{
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.03);
   transition:transform .2s ease;
 }
-
 .al-item:hover .al-cover{transform:scale(1.01)}
 
 /* ---------- Infos ---------- */
 .al-info{
-  text-align: center;      /* centre tout le texte */
-  align-items: center;     /* centre aussi horizontalement les éléments flex */
+  display:flex;flex-direction:column;gap:8px;
+  min-width:0;
 }
-
 .al-name{
   margin:0;
   font-size:1.22rem;
@@ -103,12 +101,11 @@ body{
   word-break:break-word;
   padding-right:45px;          /* espace réservé pour le bouton X */
 }
-
 .al-meta{margin:0;color:var(--muted);font-weight:600}
 .al-status{margin:0;font-weight:700;color:var(--accent)}
 
 /* ---------- Genres ---------- */
-.al-genres{margin:0;display:flex;flex-wrap:wrap;gap:8px;color:#cfe2ff}
+.al-genres{margin:0;display:flex;flex-wrap:wrap;gap:8px;color:#cfe2ff;text-align: center;justify-content: center}
 
 /* ---------- Description (clamp + voir plus) ---------- */
 .al-desc{
@@ -116,6 +113,7 @@ body{
   display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;
   -webkit-line-clamp:7; line-clamp:7;
   position:relative;
+  text-align: center;
 }
 @media (max-width:780px){.al-desc{-webkit-line-clamp:6;line-clamp:6}}
 @media (max-width:520px){.al-desc{-webkit-line-clamp:5;line-clamp:5}}
