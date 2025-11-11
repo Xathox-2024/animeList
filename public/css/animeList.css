@@ -14,9 +14,9 @@ body{
 }
 
 /* ---------- Wrapper & cartes ---------- */
-.al-wrapper{max-width:1600px;margin:28px auto;padding:0 24px}
+.al-wrapper{max-width:1600px;margin:28px auto;padding:0 24px;text-align: center}
 .al-header h1{margin:0 0 6px;font-size:2.1rem}
-.al-sub{margin:0 0 22px;color:var(--muted)}
+.al-sub{margin:0 0 22px;color:var(--muted);text-align: center}
 
 .al-card{
   background:var(--panel);
