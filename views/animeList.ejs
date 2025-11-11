@@ -24,39 +24,41 @@
       <p class="al-sub">Ajoute, cherche et parcours par ordre alphabétique.</p>
     </header>
 
-    <!-- Formulaire d'ajout -->
-    <section class="al-card al-form">
-      <h2>Ajouter un anime</h2>
-      <form id="animeForm" enctype="multipart/form-data" autocomplete="off">
-        <div class="grid-2">
-          <label>Nom
-            <input type="text" name="name" required />
+    <% if (session.role === "admin") { %>
+      <!-- Formulaire d'ajout -->
+      <section class="al-card al-form">
+        <h2>Ajouter un anime</h2>
+        <form id="animeForm" enctype="multipart/form-data" autocomplete="off">
+          <div class="grid-2">
+            <label>Nom
+              <input type="text" name="name" required />
+            </label>
+
+            <label>Année
+              <input type="number" name="year" placeholder="2025" min="1900" max="2100" />
+            </label>
+          </div>
+
+          <div class="grid-2">
+
+            <label>Genres (séparés par des virgules)
+              <input type="text" name="genres" placeholder="Action, Aventure, ..." />
+            </label>
+          </div>
+
+          <label>Description
+            <textarea name="description" rows="4" placeholder="Résumé rapide..."></textarea>
           </label>
 
-          <label>Année
-            <input type="number" name="year" placeholder="2025" min="1900" max="2100" />
+          <label>Image (obligatoire)
+            <input type="file" name="image" accept="image/*" required />
           </label>
-        </div>
 
-        <div class="grid-2">
-
-          <label>Genres (séparés par des virgules)
-            <input type="text" name="genres" placeholder="Action, Aventure, ..." />
-          </label>
-        </div>
-
-        <label>Description
-          <textarea name="description" rows="4" placeholder="Résumé rapide..."></textarea>
-        </label>
-
-        <label>Image (obligatoire)
-          <input type="file" name="image" accept="image/*" required />
-        </label>
-
-        <button type="submit" class="al-btn">Ajouter</button>
-        <p id="formMsg" class="al-msg" aria-live="polite"></p>
-      </form>
-    </section>
+          <button type="submit" class="al-btn">Ajouter</button>
+          <p id="formMsg" class="al-msg" aria-live="polite"></p>
+        </form>
+      </section>
+    <% } %> 
 
     <!-- Liste / rendu -->
     <section class="al-card">
