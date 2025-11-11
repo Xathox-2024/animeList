@@ -64,10 +64,12 @@ body{
 /* ---------- Layout interne ---------- */
 /* Image un peu plus petite (équilibre visuel parfait) */
 .al-article{
-  display:grid;
-  grid-template-columns: clamp(220px, 28%, 300px) 1fr;
-  gap:22px; padding:16px; align-items:start;
+  display:flex;
+  flex-direction:column;   /* empile l'image puis le texte */
+  gap:14px;
+  padding:16px;
 }
+
 @media (max-width:1100px){.al-article{grid-template-columns: clamp(200px, 34%, 260px) 1fr}}
 @media (max-width:780px){  .al-article{grid-template-columns: 220px 1fr; gap:18px} }
 @media (max-width:520px){  .al-article{grid-template-columns:1fr} } /* mobile: image au-dessus */
