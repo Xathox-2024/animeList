@@ -4,9 +4,14 @@
   const ITEM_SELECTOR = '.al-item';
   const BTN_SELECTOR  = '.al-watch';
   const NAME_SEL      = '.al-name';
-  const YEAR_SEL      = '.al-meta'; // si tu as l'année ici, sinon adapte
+  const YEAR_SEL      = '.al-meta'; // adapte si l'année est ailleurs
 
   const STORAGE_KEY = 'anime-watching-keys';
+
+  // Optionnel : si tu mets <body data-role="admin"> côté EJS,
+  // on s'assure que seul l'admin active le module.
+  const role = (document.body && document.body.dataset && document.body.dataset.role) || '';
+  if (role && role !== 'admin') return;
 
   const $list = document.querySelector(LIST_SELECTOR);
   if (!$list) return;
@@ -47,7 +52,6 @@
   function reorder() {
     const items = Array.from($list.querySelectorAll(ITEM_SELECTOR));
 
-    // groupe par état
     const watching = [];
     const others   = [];
 
@@ -55,13 +59,12 @@
       (it.classList.contains('is-watching') ? watching : others).push(it);
     }
 
-    // tri : on garde l'ordre d’activation pour les "watching" (tel quel),
-    // et on remet les autres selon leur index d'origine.
+    // on garde l'ordre courant pour "watching"
+    // et on remet les autres selon leur index d'origine
     others.sort((a, b) => Number(a.dataset.originalIndex) - Number(b.dataset.originalIndex));
 
     const ordered = [...watching, ...others];
 
-    // réinjection DOM (performant)
     const frag = document.createDocumentFragment();
     for (const it of ordered) frag.appendChild(it);
     $list.appendChild(frag);
@@ -82,21 +85,12 @@
     reorder();
   }
 
-  // installe bouton + état + index
+  // installe bouton + état + index (⚠️ ne crée PLUS le bouton si absent)
   function setupItem(item, index) {
     ensureOriginalIndex(item, index);
 
-    let btn = item.querySelector(BTN_SELECTOR);
-    if (!btn) {
-      // si jamais le bouton n'est pas dans le template, on le crée ici
-      btn = document.createElement('button');
-      btn.className = 'al-watch';
-      btn.type = 'button';
-      btn.textContent = 'En cours de visionnage';
-      btn.setAttribute('aria-pressed', 'false');
-      const article = item.querySelector('.al-article') || item;
-      article.insertBefore(btn, article.querySelector('.al-info'));
-    }
+    const btn = item.querySelector(BTN_SELECTOR);
+    if (!btn) return; // si le bouton n'est pas rendu par l'EJS (ex: pas admin), on stoppe
 
     const key = buildKey(item);
     item.dataset.key = key;
@@ -115,8 +109,8 @@
     reorder();
   }
 
-  // observe les ajouts dynamiques (si ta liste se met à jour après)
-  const mo = new MutationObserver((muts) => {
+  // observe les ajouts dynamiques (si la liste se met à jour après)
+  const mo = new MutationObserver(() => {
     let needReorder = false;
     const items = Array.from($list.querySelectorAll(ITEM_SELECTOR));
     items.forEach((it, i) => {
