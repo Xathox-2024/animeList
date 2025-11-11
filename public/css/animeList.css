@@ -86,13 +86,15 @@ body{
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.03);
   transition:transform .2s ease;
 }
+
 .al-item:hover .al-cover{transform:scale(1.01)}
 
 /* ---------- Infos ---------- */
 .al-info{
-  display:flex;flex-direction:column;gap:8px;
-  min-width:0;
+  text-align: center;      /* centre tout le texte */
+  align-items: center;     /* centre aussi horizontalement les éléments flex */
 }
+
 .al-name{
   margin:0;
   font-size:1.22rem;
@@ -101,6 +103,7 @@ body{
   word-break:break-word;
   padding-right:45px;          /* espace réservé pour le bouton X */
 }
+
 .al-meta{margin:0;color:var(--muted);font-weight:600}
 .al-status{margin:0;font-weight:700;color:var(--accent)}
 
