@@ -12,6 +12,17 @@
   </ul>
 </div>
 
+    <% if (sessionRemaining !== null) { %>
+      <div
+        class="session-timer"
+        id="session-timer"
+        data-remaining="<%= sessionRemaining %>"
+      >
+        Déconnexion dans
+        <strong id="session-timer-value">--:--:--</strong>
+      </div>
+    <% } %>
+
 <!-- barre de recherche (je la mets à droite, proche de l'avatar si connecté) -->
 <div class="navbar-right">
   <form class="navbar-search" role="search" aria-label="Recherche d'anime" onsubmit="return false;">
@@ -40,5 +51,9 @@
         <a href="/logout" role="menuitem">Déconnexion</a>
       </div>
     </div>
+  <% } %>
+  
+  <% if (sessionRemaining !== null) { %>
+    <script src="/js/sessionTimer.js"></script>
   <% } %>
 </div>
