@@ -133,6 +133,26 @@ nav {
   transform: rotate(180deg);
 }
 
+.session-timer {
+  display: flex;
+  align-items: center;
+  margin-right: 16px;
+  font-size: 14px;
+  color: #e7e7e7;
+  white-space: nowrap;
+}
+
+.session-timer strong {
+  margin-left: 6px;
+  color: #ffd700;
+  font-variant-numeric: tabular-nums;
+}
+
+.session-timer.warning strong {
+  color: #ff6b6b;
+  text-shadow: 0 0 6px rgba(255, 107, 107, 0.6);
+}
+
 .menu {
   display: none;
   position: absolute;

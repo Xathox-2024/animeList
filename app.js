@@ -7,7 +7,6 @@ const cookieConsent = require("./routes/Middlewares/cookieConsent");
 const consentRoutes = require("./routes/consentRoutes");
 
 const connectDB = require("./config/database");
-// const protectRoutes = require("./routes/Middlewares/protectRoutes");
 const createSessionMiddleware = require("./config/session");
 const authRoutes = require("./routes/authRoutes");
 const animeRoutes = require("./routes/animeRoutes");
