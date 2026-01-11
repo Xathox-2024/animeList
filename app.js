@@ -11,6 +11,7 @@ const connectDB = require("./config/database");
 const createSessionMiddleware = require("./config/session");
 const authRoutes = require("./routes/authRoutes");
 const animeRoutes = require("./routes/animeRoutes");
+const User = require("./models/userModel");
 
 dotenv.config();
 
