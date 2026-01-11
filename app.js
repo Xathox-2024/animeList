@@ -10,7 +10,6 @@ const connectDB = require("./config/database");
 const createSessionMiddleware = require("./config/session");
 const authRoutes = require("./routes/authRoutes");
 const animeRoutes = require("./routes/animeRoutes");
-const User = require("./models/userModel");
 
 dotenv.config();
 
@@ -43,26 +42,7 @@ app.use(consentRoutes);
     next();
   });
 
-  app.use(async (req, res, next) => {
-    res.locals.sessionRemaining = null;
 
-    if (req.session?.userId) {
-      const user = await User.findById(req.session.userId).select("sessionExpiresAt");
-
-      if (user?.sessionExpiresAt) {
-        const diff = user.sessionExpiresAt.getTime() - Date.now();
-
-        if (diff <= 0) {
-          req.session.destroy(() => {});
-          return res.redirect("/login");
-        }
-
-        res.locals.sessionRemaining = Math.floor(diff / 1000); // secondes restantes
-      }
-    }
-
-    next();
-  });
 
   app.use("/", authRoutes);
 
