@@ -8,11 +8,11 @@ async function createSessionMiddleware() {
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 14400000 },
+    cookie: { maxAge: 7200 },
     store: connectMongo.create({
       client: mongoose.connection.getClient(),
       collectionName: "sessions",
-      ttl: 14400,
+      ttl: 259200,
     }),
   });
 }
