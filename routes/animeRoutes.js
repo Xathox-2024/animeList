@@ -6,7 +6,6 @@ const listAnimesJson = require("../controllers/animes/listAnimesJson");
 const createAnime = require("../controllers/animes/createAnime");
 const deleteAnime = require("../controllers/animes/deleteAnime");
 
-const isAuthenticated = require("./Middlewares/authRoutes/isAuthenticated");
 const multerCloudinary = require("./Middlewares/authRoutes/multerCloudinary");
 const validateAnime = require("./Middlewares/validateAnime");
 
